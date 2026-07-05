@@ -14,8 +14,6 @@ const coverpool = [
     "picture/cover live twin lil la sweet.jpg", 
     "picture/cover live twin lil-la treat.jpg", 
     "picture/cover-live-twin lil la.jpg",
-    "picture/evil twin ki-sikil and lil-la.jpg", 
-    "picture/evil-twin Ki-sikil Deal.png",
 ]
 const mylibrary=[];
 
