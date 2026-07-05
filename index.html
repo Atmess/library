@@ -8,39 +8,79 @@
 		<link rel="stylesheet" href="style.css" />
 	</head>
 	<body>
-		<header>
-			<h1>Library</h1>
-			<nav>
-				<a href="#">Home</a>
-				<a href="#catalog">Catalog</a>
-				<a href="#about">About</a>
-			</nav>
-		</header>
-		<main>
-			<section id="catalog">
-				<h2>Catalog</h2>
-				<form id="book-form">
-					<input type="text" id="title" placeholder="Book Title" required />
-					<input type="text" id="author" placeholder="Author" required />
-					<input type="number" id="page" placeholder="Number of Pages" required />
-					<label>
-						<input type="checkbox" id="read" />
-						Read
-					</label>
-					<button type="submit">Add Book</button>
-				</form>
-				<div id="book-list">
-					<!-- Books will be displayed here -->
+		
+		<div class="container">
+			<div class="sidebar">
+		<h2>Dashboard</h2>
+        <P>home</P>
+        <p>profile</p>
+        <p>massage</p>
+        <p>histori</p>
+        <p>task</p>
+        <p>comunity</p>
+        <p>seting</p>
+        <p>support</p>
+        <p>privacy</p>
+			</div>
+			<div class="mainbar">
+				<div class="header-mainbar">
+					<div class="searchbar">
+                <p>&#128269;</p>
+				<p><span id="day"></span>/<span id="date-time"></span><span id="month"></span><span id="year"></span></p>
+                <input type="text" class="search-input" placeholder="Search..." />
+                <p>&#128276;</p>
+                <img src="picture/eviltwin.png" width="45" height="45" alt="Evil☆Twin" />
+                <h2>Evil☆Twin</h2>
+            </div>
+			<div class="profile">
+              <div class="profile-info">
+                <img src="picture/eviltwin.png" width="75" height="75" alt="Evil☆Twin" />
+                <div class="profile-details">
+                  <p>hello there</p>
+                  <h2>Evil☆Twin(ki-sikil and lil-la)</h2>
+                </div>
+              </div>
+              <div class="buttonplace">
+                <button class="profile-button">Profile</button>
+                <button class="logout-button">Logout</button>
+                <button class="settings-button">Settings</button>
+              </div>
+            </div>
 				</div>
-			</section>
-			<section id="about">
-				<h2>About</h2>
-				<p>Information about the library.</p>
-			</section>
-		</main>
-		<footer>
-			<p>&copy; <span id="day"></span>/<span id="date-time"></span><span id="month"></span><span id="year"></span> Library</p>
-		</footer>
+				<div class="main-mainbar">
+					<div class="main">
+						<div class="card">
+							<main>
+								<section id="catalog">
+									<h2>Catalog</h2>
+								<form id="book-form">
+									<input type="text" id="title" placeholder="Book Title" required />
+									<input type="text" id="author" placeholder="Author" required />
+									<input type="number" id="page" placeholder="Number of Pages" required />
+									<label>
+									<input type="checkbox" id="read" />Read</label>
+									<button type="submit">Add Book</button>
+								</form>
+									<div id="book-list">
+										<!-- Books will be displayed here -->
+									</div>
+								</section>
+			
+							</main>
+						</div>
+						<div class="card2">
+							<section id="about">
+							<h2>About</h2>
+							<p>Information about the library.</p>
+							</section>
+						</div>
+					</div>
+					<footer>
+						<p>&copy; <span id="years"></span> Library</p>
+					</footer>
+				</div>
+			</div>
+		</div>
         <script src="script.js"></script>
 	</body>
 </html>

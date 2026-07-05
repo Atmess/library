@@ -1,3 +1,128 @@
+body{
+    background-image: url(picture/live-twin-home.png);
+    background-size: contain;
+    background-position: center;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+.container{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 300px 1fr;
+}
+
+
+.sidebar{
+    background-color:rgba(103, 188, 230, 0.5);
+    padding: 2rem;
+    display: grid;
+    grid-template-rows: repeat(1, 80px) repeat(5 , 40px) repeat(1 , 100px) repeat(2 ,40px);
+}
+.sidebar p{
+    font-size: 20px;
+    font-weight: 1000;
+    margin: 0;
+}
+.sidebar h2{
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.mainbar{
+
+    display: grid;
+    grid-template-rows: 150px 1fr;
+}
+
+.header-mainbar{
+
+    display: grid;
+    background-color: rgba(103, 188, 230, 0.5);
+    grid-template-rows: 40px 1fr;
+    }
+
+.searchbar{
+
+    display: flex;
+    align-items: center;
+    justify-content:  baseline;
+}
+.searchbar p{
+    
+    margin-left: 40px;
+    margin-right: 10px;
+}
+.searchbar img{
+    padding: 0 20px;
+}
+.search-input{
+    width: 60%;
+    height: 25px;
+    border-radius: 10px;
+    border: none;
+    margin-left: 10px;
+    margin-right: 40px;
+}
+.profile{
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.profile-info{
+    display: flex;
+    align-items: center;
+    width: 70%;
+    height: 100%;
+
+    padding: 0 40px;
+}
+.profile-details{
+    padding : 0 25px;
+}
+.profile-details p{
+    margin: 0;
+    margin-bottom: -10px;
+    font-weight: 1000;
+}
+.profile-details h2{
+    margin: 0;
+    margin-top: 10px;
+}
+
+.buttonplace{
+  
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+
+}
+.main-mainbar{
+    display: grid;
+    grid-template-rows: 99% 1fr;
+    }
+.main{
+    display: grid;
+    grid-template-columns: 75% 1fr;
+}
+
+button{
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(103, 188, 250, 1);
+    font-weight: 1000;
+}
+
 #book-list{
     display: grid;
     grid-template-columns: repeat(4, 1fr) ;
@@ -12,3 +137,13 @@
     flex-direction: column;
 
 }
+.bookcard p, h3{
+    font-weight: 1000;
+}
+
+
+footer{
+    background-color: rgba(244, 110, 161, 0.8);
+    text-align: center;
+}
+
