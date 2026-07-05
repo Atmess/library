@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>Library</title>
+		<meta name="description" content="Library homepage" />
+		<link rel="stylesheet" href="style.css" />
+	</head>
+	<body>
+		<header>
+			<h1>Library</h1>
+			<nav>
+				<a href="#">Home</a>
+				<a href="#catalog">Catalog</a>
+				<a href="#about">About</a>
+			</nav>
+		</header>
+		<main>
+			<section id="catalog">
+				<h2>Catalog</h2>
+				<form id="book-form">
+					<input type="text" id="title" placeholder="Book Title" required />
+					<input type="text" id="author" placeholder="Author" required />
+					<input type="number" id="page" placeholder="Number of Pages" required />
+					<label>
+						<input type="checkbox" id="read" />
+						Read
+					</label>
+					<button type="submit">Add Book</button>
+				</form>
+				<div id="book-list">
+					<!-- Books will be displayed here -->
+				</div>
+			</section>
+			<section id="about">
+				<h2>About</h2>
+				<p>Information about the library.</p>
+			</section>
+		</main>
+		<footer>
+			<p>&copy; <span id="day"></span>/<span id="date-time"></span><span id="month"></span><span id="year"></span> Library</p>
+		</footer>
+        <script src="script.js"></script>
+	</body>
+</html>

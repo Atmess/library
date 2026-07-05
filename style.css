@@ -1,0 +1,14 @@
+#book-list{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr) ;
+    gap: 1rem;
+}
+
+.bookcard{
+    display: flex;
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
