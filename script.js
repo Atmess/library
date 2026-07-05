@@ -85,9 +85,7 @@ Bookcard.style.color = "white";
         removebtn.classList.add('remove-btn');
 
         removebtn.addEventListener('click', function(){
-            mylibrary.splice(i,1);
-
-            displaylibrary();
+            removebook(Currentbook.id);
         })
         const titleElement = document.createElement('h3');
         titleElement.textContent = Currentbook.title;
@@ -106,8 +104,7 @@ Bookcard.style.color = "white";
         togglebtn.classList.add('toggle-btn');
 
         togglebtn.addEventListener('click', function(){
-            mylibrary[i].read= !mylibrary[i].read;
-            displaylibrary();
+            toggleread(Currentbook.id);
         });
 
         Bookcard.appendChild(idElement);
@@ -120,4 +117,14 @@ Bookcard.style.color = "white";
         Bookcard.appendChild(togglebtn);
 
     }
+}
+function removebook(bookid){
+    const index = mylibrary.findIndex(Book=>Book.id === bookid);
+    mylibrary.splice(index ,1);
+    displaylibrary();
+}
+function toggleread(bookid){
+     const index = mylibrary.findIndex(Book=>Book.id === bookid);
+     mylibrary[index].read =!mylibrary[index].read;
+     displaylibrary();
 }
