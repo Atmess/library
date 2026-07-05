@@ -80,6 +80,15 @@ Bookcard.style.color = "white";
         idElement.style.color = "gray";
         idElement.textContent = "ID: " + Currentbook.id;
 
+        const removebtn=document.createElement('button');
+        removebtn.textContent="Remove Book";
+        removebtn.classList.add('remove-btn');
+
+        removebtn.addEventListener('click', function(){
+            mylibrary.splice(i,1);
+
+            displaylibrary();
+        })
         const titleElement = document.createElement('h3');
         titleElement.textContent = Currentbook.title;
 
@@ -92,13 +101,23 @@ Bookcard.style.color = "white";
         const readElement = document.createElement('p');
         readElement.textContent = Currentbook.read ?"status : read" : "status :Not read";
 
+        const togglebtn= document.createElement('button');
+        togglebtn.textContent="change status";
+        togglebtn.classList.add('toggle-btn');
+
+        togglebtn.addEventListener('click', function(){
+            mylibrary[i].read= !mylibrary[i].read;
+            displaylibrary();
+        });
+
         Bookcard.appendChild(idElement);
         Bookcard.appendChild(titleElement);
         Bookcard.appendChild(authorElement);
         Bookcard.appendChild(pageElement);
         Bookcard.appendChild(readElement);
-
+        Bookcard.appendChild(removebtn);
         booklist.appendChild(Bookcard);
+        Bookcard.appendChild(togglebtn);
 
     }
 }

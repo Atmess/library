@@ -130,11 +130,7 @@ button{
 }
 
 .bookcard{
-    display: flex;
-    border: 1px solid black;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    text-align: center;
 
 }
 .bookcard p, h3{
@@ -147,3 +143,9 @@ footer{
     text-align: center;
 }
 
+.remove-btn  {
+    font-size: 10px;
+}
+.toggle-btn{
+    font-size: 10px;
+}
