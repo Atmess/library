@@ -17,7 +17,8 @@ body{
 
 
 .sidebar{
-    background-color:rgba(103, 188, 230, 0.5);
+    /*background-color:rgba(103, 188, 230, 0.5);*/
+    background-color: rgba(244, 110, 161, 0.3);
     overflow: hidden; /* Hides text that doesn't fit */
     white-space: nowrap; /* Stops text from dropping to the next line */
     box-shadow: 2px 0 5px rgba(0,0,0,0.2);
@@ -37,11 +38,14 @@ body{
 }
 .sidebar button{
     justify-items: left;
-    margin-top: 0;
-    margin-bottom: 20px;
     height: 40px;
     width: 40px;
-
+    margin: 0 20px 20px 0px; 
+    /*margin-top: 0;
+    margin-bottom: 20px;
+    
+    margin-left: -10px;
+    margin-right: 20px;*/
 }
 .mainbar{
 
@@ -53,7 +57,8 @@ body{
 .header-mainbar{
 
     display: grid;
-    background-color: rgba(244, 110, 161, 0.3);
+    background-color:rgba(103, 188, 230, 0.5);
+    /*background-color: rgba(244, 110, 161, 0.3);*/
     grid-template-rows: 40px 1fr;
     height: 40px;
      overflow: hidden; /* Hides text that doesn't fit */
@@ -72,11 +77,12 @@ body{
     width: 45px;
     padding: 0;
     align-self: center;
-    background-color: rgba(244, 110, 161, 0.2);
+    background-color:rgba(103, 188, 230, 0.3);
 }
 
 .searchbar button:hover{
-    background-color: rgba(244, 110, 161, 0.5);
+    background-color:rgba(103, 188, 230, 0.5);
+
 }
 
 .searchbar{
@@ -86,8 +92,8 @@ body{
     justify-content:  baseline;
 }
 .searchbar p{
-    
-    margin-left: 40px;
+    font-weight: 900;
+    margin-left: 10px;
     margin-right: 10px;
 }
 .searchbar img{
@@ -99,7 +105,7 @@ body{
     border-radius: 10px;
     border: none;
     margin-left: 10px;
-    margin-right: 40px;
+    margin-right: 20px;
 }
 .profile{
 
