@@ -1,8 +1,33 @@
+(() => {    
 const yearstime = document.getElementById('year');
-const yeartime = document.getElementById('years');
 const monthtime = document.getElementById('month');
 const daytime = document.getElementById('day');
 const datetime = document.getElementById('date-time');
+const now = new Date()
+yearstime.textContent = now.getFullYear(); 
+monthtime.textContent = now.toLocaleString('default', { month: 'short' }) ;
+daytime.textContent = now.toLocaleString('default', { weekday: 'short' }) ;
+datetime.textContent = now.getDate();
+})();
+(() => {  
+    const toggleBtn = document.getElementById('sidebarbtn');
+    const sidebar = document.getElementById('sidebar');
+                toggleBtn.addEventListener('click', function() {
+                // Toggle the 'open' class on the sidebar
+                sidebar.classList.toggle('open');
+                // Listen for a click on the button
+                });   
+
+    const HeaderBtn = document.getElementById('headerbarbtn');
+    const header = document.getElementById('headerbar');
+                HeaderBtn.addEventListener('click', function() {
+                // Toggle the 'open' class on the sidebar
+                header.classList.toggle('open');
+                // Listen for a click on the button
+                });   
+
+})();
+(() => {  
 const bookform= document.getElementById('book-form');
 const coverpool = [
     "picture/cover evil twin.jpg" ,
@@ -15,29 +40,60 @@ const coverpool = [
     "picture/cover live twin lil-la treat.jpg", 
     "picture/cover-live-twin lil la.jpg",
 ]
-const mylibrary=[];
-
-yearstime.textContent = new Date().getFullYear(); 
-yeartime.textContent = new Date().getFullYear(); 
-monthtime.textContent = new Date().toLocaleString('default', { month: 'short' }) ;
-daytime.textContent = new Date().toLocaleString('default', { weekday: 'short' }) ;
-datetime.textContent = new Date().getDate();
-
+let mylibrary=[];
 bookform.addEventListener('submit', function(event){
     event.preventDefault();
     addtolibrary();
 });
 
+function savelocal(){
+    localStorage.setItem('savedlibrary' , JSON.stringify(mylibrary));
+}
 
-function Book(title,author,page,read,cover){
+function loadlocal(){
+    const data= localStorage.getItem('savedlibrary');
+    if (data){
+        const parsedData = JSON.parse(data);
+        
+        // Re-create them as actual Book class instances
+        mylibrary = parsedData.map(item => {
+            const restoredBook = new Book(item.title, item.author, item.page, item.read, item.cover);
+            restoredBook.id = item.id; // Keep the original ID!
+            return restoredBook;
+        
+    });displaylibrary();
+}
+}
+
+class Book{ 
+    #read;
+    constructor(title,author,page,read,cover){       
     this.title = title;
     this.author= author;
     this.page=page ;
-    this.read=read;
+    this.#read=read;
     this.cover=cover;
     this.id=crypto.randomUUID();
 }
+    toJSON() {
+        return {
+            title: this.title,
+            author: this.author,
+            page: this.page,
+            read: this.#read, // exposes the private field for saving
+            cover: this.cover,
+            id: this.id
+        };
+    }
 
+    readstatus(read){
+        this.#read=!this.#read;
+    }
+
+    get read(){
+        return this.#read;
+    }
+}
 function addtolibrary(){
     const titleValue = document.getElementById('title').value;
     const authorValue = document.getElementById('author').value;
@@ -49,23 +105,27 @@ function addtolibrary(){
     const chosenCover = coverpool[randomIndex];
 
     const newBook = new Book(titleValue , authorValue,pageValue,readValue,chosenCover);
+    if (titleValue.trim() === "" || authorValue.trim() === "") {
+        alert("Please enter a title and author!");
+        return;
+    }
     mylibrary.push(newBook);
+
+    savelocal();
     displaylibrary();
+    bookform.reset();
 }
 
-function displaylibrary(){
+function displaylibrary(booktorender = mylibrary){
     const booklist = document.getElementById('book-list');
 
     booklist.innerHTML="";
 
-    for (let i=0; i<mylibrary.length; i++){
-        let Currentbook= mylibrary[i];
+    for (let i=0; i<booktorender.length; i++){
+        let Currentbook= booktorender[i];
         
         const Bookcard =document.createElement('div');
         Bookcard.classList.add('bookcard');
-
-        //for backgrond image book
-      const randomNum = Math.floor(Math.random() * 1000);
 
 // 2. THE FIX: Add a linear-gradient (the dark tint) right before the image URL
         Bookcard.style.backgroundImage = `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${Currentbook.cover}')`;
@@ -98,6 +158,7 @@ Bookcard.style.color = "white";
 
         const readElement = document.createElement('p');
         readElement.textContent = Currentbook.read ?"status : read" : "status :Not read";
+        // If the book is read, add a green border!
 
         const togglebtn= document.createElement('button');
         togglebtn.textContent="change status";
@@ -107,6 +168,19 @@ Bookcard.style.color = "white";
             toggleread(Currentbook.id);
         });
 
+        if (Currentbook.read) {
+            Bookcard.style.border = "3px solid #4CAF50"; // Green
+            togglebtn.textContent = "Mark as Unread";
+        } else {
+            Bookcard.style.border = "3px solid #f44336"; // Red
+            togglebtn.textContent = "Mark as Read";
+        }
+
+
+        if (mylibrary.length === 0) {
+        booklist.innerHTML = "<h2 style='color: white;'>Your library is empty. Add a book to get started!</h2>";
+        return; // Stops the rest of the function from running
+    }
         Bookcard.appendChild(idElement);
         Bookcard.appendChild(titleElement);
         Bookcard.appendChild(authorElement);
@@ -116,15 +190,52 @@ Bookcard.style.color = "white";
         booklist.appendChild(Bookcard);
         Bookcard.appendChild(togglebtn);
 
-    }
+    }  
 }
 function removebook(bookid){
     const index = mylibrary.findIndex(Book=>Book.id === bookid);
     mylibrary.splice(index ,1);
+    savelocal();
     displaylibrary();
 }
 function toggleread(bookid){
-     const index = mylibrary.findIndex(Book=>Book.id === bookid);
-     mylibrary[index].read =!mylibrary[index].read;
+     const book = mylibrary.find(book=>book.id === bookid);
+     book?.readstatus();
+     savelocal();
      displaylibrary();
 }
+
+const searcbar = document.getElementById('searc-bar');
+
+function cleantext(text){
+    return text.toLowerCase().replace(/[^a-z0-9]/gi, '');
+}
+
+
+searcbar.addEventListener('input', function(event) {
+    // 1. Get whatever the user just typed and make it lowercase
+    const searchString = cleantext(event.target.value);
+
+    // 2. Filter the library array
+    const filteredBooks = mylibrary.filter(book => {
+            const cleantitle= cleantext(book.title);
+            const cleanauthor=cleantext(book.author);
+
+            return cleantitle.includes(searchString)||
+                   cleanauthor.includes(searchString);
+             
+    });
+
+    // 3. Send the filtered list to your updated display function
+    displaylibrary(filteredBooks);
+});
+
+
+
+
+
+loadlocal();
+})();
+
+
+

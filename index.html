@@ -10,8 +10,8 @@
 	<body>
 		
 		<div class="container">
-			<div class="sidebar">
-		<h2>Dashboard</h2>
+			<div class="sidebar" id="sidebar">
+		<button id="sidebarbtn"><img src="picture/symbol-evil-twin.png" alt="evil-twin-symbol" height="45" width="45"></button>
         <P>home</P>
         <p>profile</p>
         <p>massage</p>
@@ -23,13 +23,13 @@
         <p>privacy</p>
 			</div>
 			<div class="mainbar">
-				<div class="header-mainbar">
+				<div class="header-mainbar" id="headerbar">
 					<div class="searchbar">
                 <p>&#128269;</p>
 				<p><span id="day"></span>/<span id="date-time"></span><span id="month"></span><span id="year"></span></p>
-                <input type="text" class="search-input" placeholder="Search..." />
+                <input type="text" class="search-input" id="searc-bar" placeholder="Search..." />
                 <p>&#128276;</p>
-                <img src="picture/eviltwin.png" width="45" height="45" alt="Evil☆Twin" />
+                <button id="headerbarbtn" ><img src="picture/eviltwin.png" width="45" height="45" alt="Evil☆Twin"/></button>
                 <h2>Evil☆Twin</h2>
             </div>
 			<div class="profile">
@@ -59,7 +59,7 @@
 									<input type="number" id="page" placeholder="Number of Pages" required />
 									<label>
 									<input type="checkbox" id="read" />Read</label>
-									<button type="submit">Add Book</button>
+									<button type="submit" id="submitbtn">Add Book</button>
 								</form>
 									<div id="book-list">
 										<!-- Books will be displayed here -->
@@ -75,12 +75,12 @@
 							</section>
 						</div>
 					</div>
-					<footer>
-						<p>&copy; <span id="years"></span> Library</p>
-					</footer>
+					
 				</div>
 			</div>
 		</div>
         <script src="script.js"></script>
 	</body>
 </html>
+
+
